@@ -1,0 +1,45 @@
+body{
+    margin: 20px;
+    justify-content: center;
+    font-size: larger;
+}
+div {
+    display:inline-block;
+    justify-content: center;
+    text-align: center;
+}
+.container{
+    display: flex;
+    gap: 0 50px;
+}
+.box{
+    background-color: #aca9ab;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    height: 250px;
+    width: 250px;
+    justify-content: center;
+    text-align: center;
+    text-center: inter-word;
+    font-size: x-large;
+    font-family: 'Times New Roman', Times, serif;
+}
+.box1{
+    background-color: #a00e94;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 8px;
+    height: 250px;
+    width: 250px;
+    font-size: x-large;
+    color: rgb(0, 0, 0);
+    font-family: 'Times New Roman', Times, serif;
+    
+}#button{
+    border: none;
+}
+.display-topright{
+    position:absolute;
+    margin: 2%;
+    right: 0;
+    top: 0
+    }
