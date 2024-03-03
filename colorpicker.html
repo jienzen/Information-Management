@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <style>
+        body {
+            display: flex;
+
+            transition: background-color 0.5s ease;
+        }
+        div {
+        display:inline-block;
+        justify-content: center;
+        text-align: center;
+        }.container{
+        display: flex;
+        border: 2x;
+        }
+
+        #colorPicker {
+            margin-bottom: 10px;
+        }
+
+        #applyButton {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div  class="container">
+
+    <input type="color" id="colorPicker" value="#ffffff" onchange="changeBackgroundColor(event)">
+
+    <br>
+
+    <input type="text" id="colorCode" placeholder="e.g., #00ff00">
+
+    <br>
+
+    <button id="applyButton" onclick="applyColor()">Apply Color</button>
+    </div>
+
+    <script>
+        function applyColor() {
+            // Get the selected color from the color picker
+            var colorPicker = document.getElementById("colorPicker");
+            var selectedColor = colorPicker.value;
+
+            // If the color code input is not empty, use that value instead
+            var colorCodeInput = document.getElementById("colorCode");
+            if (colorCodeInput.value.trim() !== "") {
+                selectedColor = colorCodeInput.value;
+            }
+
+            // Set the background color of the body
+            document.body.style.backgroundColor = selectedColor;
+        }
+        function changeBackgroundColor(event) {
+            document.body.style.backgroundColor = event.target.value;
+        }
+    </script>
+
+</body>
+</html>
