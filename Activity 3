@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Display</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            text-align: center;
+            margin: 20px;
+            color: #333;
+            text-decoration: solid;
+            
+        }
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            background-color: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        .header {
+            font-size: 40px;
+        }
+        input {
+            padding: 10px;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        button {
+            background-color: white;
+            color: rgb(6, 97, 41);
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .container {
+            display: inline-block;
+            margin: 4px;
+        }
+        .box {
+            padding: 20px;
+            margin: 100px;
+            display: inline-block;
+            vertical-align: middle;
+            background-color: #aca9ab;
+            border: 2px solid rgb(255, 255, 255);
+            border-radius: 8px;
+            height: 250px;
+            width: 250px;
+            justify-content: center;
+            text-align: center;
+            font-size: large;
+            font-family: 'Times New Roman', Times, serif;
+            line-height: 250px; 
+            color: black;
+        }
+        div {
+            display:inline-block;
+            justify-content: left;
+            margin: 10px;
+            text-align: center;
+            }
+        .uwu{
+            display: flex;
+            border: 3x;
+        }
+        #colorCode {
+            width: 5em; /* Set the width to match the input box */
+            height: 1.5em;
+            margin: 3px;
+        }
+
+        #colorPicker {
+            width: 5em; 
+            height: 3em;
+            margin: 3px;
+        }
+
+        #applyButton {
+            padding: 5px 10px;
+            font-size: 16px;  
+        }
+
+        #outputBox1,
+        #outputBox2 {
+            margin-top: 20px;
+            justify-content: center;
+            text-align: center;
+        }
+        .footer-container {
+            display: flex;
+            justify-content: center;
+            background-color: #333;
+            color: white;
+            padding: 5px;
+        }
+
+        .footer {
+            font-size: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header-container">
+        <div class="header">ACTIVITY 3</div>
+        <div class="header">BSCS-201</div>
+    </div>
+    <div class="uwu">
+
+        <input type="color" id="colorPicker" value="color" onchange="changeBackgroundColor(event)">
+
+        <br>
+
+        <input type="text" id="colorCode" placeholder="Color Code">
+
+        <button style="margin: 2px;" id="applyButton" onclick="applyColor()">Apply Color</button>
+    </div>
+    <br>
+
+
+    <h2 style="font-size: 24px;">Player's Name</h2>
+
+    <div class="container">
+        <label style="font-size: 18px;" for="nameInput1">Enter Player 1's name:</label>
+        <input style="border-color:rgb(0, 0, 39);background-color: rgba(117, 117, 117, 0.356);" type="text" id="nameInput1">
+        <div>
+            <button style="color: white;background-color: #024616;" onclick="displayName('outputBox1', 'nameInput1', 1)">SUBMIT</button>
+        </div>
+
+        <label style="font-size: 18 px;" for="nameInput2">Enter Player 2's name:</label>
+        <input style="border-color:rgb(0, 0, 39);background-color: rgba(117, 117, 117, 0.356);" type="text" id="nameInput2">
+        <div>
+            <button style="color: white;background-color: #02571b;" onclick="displayName('outputBox2', 'nameInput2', 2)">SUBMIT</button>
+        </div>
+
+        <div style="font-size: 20px;" class="box" id="outputBox1">1</div>
+        <div style="font-size: 20px;" class="box" id="outputBox2">2</div>
+    </div>
+    <div class="footer-container">
+        <footer>
+            <div class="footer">Made by: Jienzen B. Espino</div>
+        </footer>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var storedName1 = localStorage.getItem("player1Name");
+            var storedName2 = localStorage.getItem("player2Name");
+
+            if (storedName1) {
+                document.getElementById("nameInput1").value = storedName1;
+                displayName('outputBox1', 'nameInput1', 1);
+            }
+
+            if (storedName2) {
+                document.getElementById("nameInput2").value = storedName2;
+                displayName('outputBox2', 'nameInput2', 2);
+            }
+        };
+
+        function applyColor() {
+            var colorPicker = document.getElementById("colorPicker");
+            var selectedColor = colorPicker.value;
+            var colorCodeInput = document.getElementById("colorCode");
+            if (colorCodeInput.value.trim() !== "") {
+                selectedColor = colorCodeInput.value;
+            }
+
+            document.body.style.backgroundColor = selectedColor;
+        }
+
+        function changeBackgroundColor(event) {
+            document.body.style.backgroundColor = event.target.value;
+        }
+
+        function displayName(outputBoxId, inputId, userNumber) {
+            var inputName = document.getElementById(inputId).value;
+            var outputBox = document.getElementById(outputBoxId);
+
+            if (inputName.trim() == "") {
+                outputBox.innerHTML = "Please enter a name.";
+            } else {
+                outputBox.innerHTML = "Player" + userNumber + "'s name is: \n" + inputName;
+
+                localStorage.setItem("player" + userNumber + "Name", inputName);
+            }
+        }
+    </script>
+</body>
+
+</html>
